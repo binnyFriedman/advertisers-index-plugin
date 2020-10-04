@@ -1,0 +1,19 @@
+{
+  "name": "advertisers-index",
+  "description": "description",
+  "minimum-stability": "dev",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "binny",
+      "email": "binny@nekuda.co.il"
+    }
+  ],
+
+  "require": {
+    "facebook/graph-sdk": "5.*"
+  },
+  "autoload": {
+    "psr-4": {"Inc\\": "./inc"}
+  }
+}

@@ -1,0 +1,42 @@
+@import 'modules/tabs';
+
+.display_images{
+  display: flex;
+  margin: 20px 0;
+  div{
+    margin: 0 10px;
+    padding: 3px;
+    border: #b7b09c solid 2px;
+    height: 200px;
+    width: 200px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}
+.options-box{
+  height: auto;
+  overflow: scroll;
+  label{
+    font-weight: bold;
+  }
+}
+.star_rating{
+  cursor: pointer;
+  font-size: 30px;
+
+
+}
+.star_rating_star:hover{
+    font-size: 33px;
+
+}
+.reviews-table{
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  font-size: 14px;
+  > span{
+    font-size: 16px;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,3 @@
+.ad-gallery--wrapper>ul{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));grid-gap:20px}.ad-gallery--wrapper li{margin:0}.ad-gallery--wrapper img{border:none}button.gallery-show-more{width:100%;color:white;background:var(--primary-color);text-align:center;padding:10px 0;font-size:20px;line-height:26px}
+
+/*# sourceMappingURL=gallery.css.map */
