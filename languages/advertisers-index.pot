@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-07 17:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: admin.php:2
+msgid "Advertisers Plugin"
+msgstr ""
+
+#: admin.php:6
+msgid "Cpt Settings"
+msgstr ""
+
+#: admin.php:7 admin.php:27
+msgid "Levels"
+msgstr ""
+
+#: admin.php:8 admin.php:38
+msgid "Contact form options"
+msgstr ""
+
+#: admin.php:9 admin.php:49 Pages/Dashboard.php:100
+msgid "Facebook app settings"
+msgstr ""
+
+#: Api/Callbacks/ManagerCallbacks.php:19
+msgid ""
+"Manage the section and Features of this plugin by activating the checkboxes "
+"from the following list."
+msgstr ""
+
+#: Api/Callbacks/ManagerCallbacks.php:22 Api/Callbacks/ManagerCallbacks.php:25
+msgid "Manage the taxonomy name used in templates and across the site."
+msgstr ""
+
+#: Api/Callbacks/ManagerCallbacks.php:28
+msgid "Set the app id and secret key ."
+msgstr ""
+
+#: Base/BaseController.php:35
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: Base/BaseController.php:36
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: Base/BaseController.php:37
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: Base/BaseController.php:38
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: Base/BaseController.php:39
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: Base/BaseController.php:40
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: Base/BaseController.php:41
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: Base/BaseController.php:42
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: Base/SettingsLinks.php:13
+msgid "Settings"
+msgstr ""
+
+#: Controllers/Advertiser.php:87
+msgid "Advertisers Options"
+msgstr ""
+
+#: Controllers/Advertiser.php:96
+msgid "Reviews"
+msgstr ""
+
+#: Controllers/Advertiser.php:138
+msgid "Website"
+msgstr ""
+
+#: Controllers/Advertiser.php:145
+msgid "Facebook Page"
+msgstr ""
+
+#: Controllers/Advertiser.php:151
+msgid "Instagram Page"
+msgstr ""
+
+#: Controllers/Advertiser.php:157
+msgid "Phone number"
+msgstr ""
+
+#: Controllers/Advertiser.php:163
+msgid "Address"
+msgstr ""
+
+#: Controllers/Advertiser.php:169
+msgid "Opening hours"
+msgstr ""
+
+#: Controllers/Advertiser.php:176
+msgid "List of all emails for contact"
+msgstr ""
+
+#: Controllers/Advertiser.php:185 Pages/Dashboard.php:35
+msgid "Advertiser Settings"
+msgstr ""
+
+#: Controllers/Advertiser.php:186 Controllers/Advertiser.php:208
+msgid "Contact details"
+msgstr ""
+
+#: Controllers/Advertiser.php:188 Controllers/Advertiser.php:225
+msgid "Gallery"
+msgstr ""
+
+#: Controllers/Advertiser.php:193
+msgid "Advertiser meta"
+msgstr ""
+
+#: Controllers/Advertiser.php:196
+msgid "Advertisers header"
+msgstr ""
+
+#: Controllers/Advertiser.php:200
+msgid "Advertisers bullets"
+msgstr ""
+
+#: Controllers/Advertiser.php:240
+msgid "Select Images"
+msgstr ""
+
+#: Controllers/Advertiser.php:249
+msgid "Select Cover Image"
+msgstr ""
+
+#: Controllers/Advertiser.php:304
+msgid "Name"
+msgstr ""
+
+#: Controllers/Advertiser.php:307
+msgid "Email"
+msgstr ""
+
+#: Controllers/Advertiser.php:310 Controllers/ReviewsController.php:82
+msgid "Rating"
+msgstr ""
+
+#: Controllers/Advertiser.php:313 Controllers/ReviewsController.php:88
+msgid "Approved"
+msgstr ""
+
+#: Controllers/Advertiser.php:316 Controllers/ReviewsController.php:92
+msgid "Featured"
+msgstr ""
+
+#: Controllers/Advertiser.php:319
+msgid "Header"
+msgstr ""
+
+#: Controllers/Advertiser.php:322
+msgid "Content"
+msgstr ""
+
+#: Controllers/Advertiser.php:368
+msgid "Profession"
+msgstr ""
+
+#: Controllers/Advertiser.php:369
+msgid "Professions"
+msgstr ""
+
+#: Controllers/Advertiser.php:495
+msgid "There was a problem with sending the email"
+msgstr ""
+
+#: Controllers/Advertiser.php:523
+msgid ""
+"Your facebook app id was not set in plugin settings please set it to add "
+"facebook comments."
+msgstr ""
+
+#: Controllers/BannerController.php:31 Controllers/BannerController.php:33
+#: Controllers/BannerController.php:38
+msgid "Banners"
+msgstr ""
+
+#: Controllers/BannerController.php:32
+msgid "Banner"
+msgstr ""
+
+#: Controllers/BannerController.php:90
+msgid "Link to follow when banner is clicked"
+msgstr ""
+
+#: Controllers/BannerController.php:100
+msgid "Select Banner for desktop"
+msgstr ""
+
+#: Controllers/BannerController.php:109
+msgid "Select Banner for mobile"
+msgstr ""
+
+#: Controllers/ReviewsController.php:24 Controllers/ReviewsController.php:25
+msgctxt "Name of post type used for reviews"
+msgid "Review"
+msgstr ""
+
+#: Controllers/ReviewsController.php:26
+msgctxt "Plural Name of post type used for reviews"
+msgid "Reviews"
+msgstr ""
+
+#: Controllers/ReviewsController.php:64
+msgid "Review Author"
+msgstr ""
+
+#: Controllers/ReviewsController.php:68
+msgid "Review Author email"
+msgstr ""
+
+#: Controllers/ReviewsController.php:75
+msgid "Review Advertiser relation"
+msgstr ""
+
+#: Pages/Dashboard.php:27
+msgid "Dashboard"
+msgstr ""
+
+#: Pages/Dashboard.php:34
+msgid "Advertisers"
+msgstr ""
+
+#: Pages/Dashboard.php:82
+msgid "Settings Manager"
+msgstr ""
+
+#: Pages/Dashboard.php:88
+msgid "Taxonomy Manager"
+msgstr ""
+
+#: Pages/Dashboard.php:94
+msgid "Advertisers Levels Manager"
+msgstr ""
+
+#: Pages/Dashboard.php:106
+msgid "Advertisers contact form options"
+msgstr ""
+
+#: Pages/Dashboard.php:118
+msgid "Cpt singular name."
+msgstr ""
+
+#: Pages/Dashboard.php:126
+msgid "Cpt plural name"
+msgstr ""
+
+#: Pages/Dashboard.php:135
+msgid "Hierarchical?"
+msgstr ""
+
+#: Pages/Dashboard.php:143
+msgid "Taxonomy singular name."
+msgstr ""
+
+#: Pages/Dashboard.php:151
+msgid "Taxonomy plural name"
+msgstr ""
+
+#: Pages/Dashboard.php:159
+msgid "Facebook app id"
+msgstr ""
+
+#: Pages/Dashboard.php:167
+msgid "Facebook app secret"
+msgstr ""
+
+#: Pages/Dashboard.php:175
+msgid "Emails subject"
+msgstr ""
+
+#: Pages/Dashboard.php:184
+msgid "Emails to"
+msgstr ""
+
+#: Pages/Dashboard.php:193
+msgid "Email body"
+msgstr ""
+
+#: Pages/Dashboard.php:201
+msgid "Webhook to send data"
+msgstr ""
+
+#: Pages/Dashboard.php:233
+msgid "Manage Levels"
+msgstr ""
+
+msgid "Name of the index item in singular form e.g Advertiser"
+msgstr ""
+
+msgid "Name of the index item in plural form e.g Advertisers"
+msgstr ""
+
+msgid "Name of the taxonomy in singular form e.g Expertise"
+msgstr ""
+
+msgid "Name of the taxonomy in plural form e.g Expertises"
+msgstr ""
+
+msgid "The app id given by facebook"
+msgstr ""
+
+msgid "The app secret given by facebook"
+msgstr ""
+
+msgid "List of emails divided by , "
+msgstr ""
+
+msgid ""
+"full email body send as html; available shortcodes are [name] [phone] [email]"
+" [advertisers_name] "
+msgstr ""
+
+msgid "webhook to sent data to like zapier or integromat"
+msgstr ""
+
+msgid "Banner Fields"
+msgstr ""
+
+msgid "Review details"
+msgstr ""
+
+msgid "New lead from our advertiser index"
+msgstr ""
+
+msgid "Template primary color"
+msgstr ""
+
+msgid "Used in breadcrums  background color"
+msgstr ""
+
+msgid "Template secondary color"
+msgstr ""
+
+msgid "Used in headings and as buttons background color"
+msgstr ""
+
+msgid "Template text color"
+msgstr ""
+
+msgid "Template expertise's header"
+msgstr ""
+
+msgid "The text above the expertise list"
+msgstr ""
+
+msgid "Template Contact form header"
+msgstr ""
+
+msgid "The text above the contact form"
+msgstr ""
+
+msgid "Default template settings"
+msgstr ""
+
+msgid "Reviews on %s"
+msgstr ""
+
+msgid "For medical advice and more information"
+msgstr ""
+
+msgid "For more experts in this field"
+msgstr ""
+
+msgid "Address:"
+msgstr ""
+
+msgid "Phone number:"
+msgstr ""
+
+msgid "Opening hours:"
+msgstr ""

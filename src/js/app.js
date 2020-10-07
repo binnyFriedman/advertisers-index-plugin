@@ -23,9 +23,15 @@ window.addEventListener("load", function() {
 
     }
 
+
+
 });
 
 jQuery(document).ready(function ($){
+
+    $('.field-color-picker').each(function(){
+        $(this).wpColorPicker();
+    });
     $(document).on('click','.js-image-upload',function (e){
         e.preventDefault();
         let $button = $(this);

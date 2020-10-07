@@ -1,5 +1,9 @@
 @import 'modules/tabs';
 
+.postbox{
+  margin-top: 20px;
+}
+
 .display_images{
   display: flex;
   margin: 20px 0;
@@ -15,8 +19,6 @@
   }
 }
 .options-box{
-  height: auto;
-  overflow: scroll;
   label{
     font-weight: bold;
   }

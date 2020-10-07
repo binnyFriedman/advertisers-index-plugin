@@ -7,22 +7,26 @@
 namespace Inc\Controllers;
 
 
-class BannerController {
+use Inc\Base\BaseController;
+
+class BannerController extends BaseController {
 
 	public function register(){
-		//add Cpt.
+		$banner_slug =$this->cpts['banner'];
+	    //add Cpt.
 		add_action('init',array($this,'addCpt'));
 		//add tax zones?
 		add_action('init',array($this,'addTax'));
 		//add metabox
 		add_action('add_meta_boxes',array($this,'addMetaBox'));
 		//save metaBox
-		add_action('save_post_banner',array($this,'saveMetaBox'));
+		add_action("save_post_$banner_slug",array($this,'saveMetaBox'));
 		//add shortcode
         add_shortcode('advertiser_banners', array($this,'displayBanners'));
 
 
 	}
+
 
 	public function addCpt(){
 		$labels = [
@@ -46,50 +50,31 @@ class BannerController {
 			"capability_type" => "post",
 			"map_meta_cap" => true,
 			"hierarchical" => false,
-			"rewrite" => array( "slug" => "banner", "with_front" => true ),
+			"rewrite" => array( "slug" =>$this->cpts['banner'], "with_front" => true ),
 			"query_var" => true,
 			"menu_position" => 5,
 			"supports" => array( "title")
 		);
-		register_post_type('banner',$args);
+		register_post_type($this->cpts['banner'],$args);
 	}
 
 	public function addTax(){
-		$plural = 'Banner Zones';
-		$single = 'Banner Zone';
-		$labels = array(
-			'name'              => _x( $plural, 'taxonomy general name', ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'singular_name'     => _x( $single, 'taxonomy singular name', ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'search_items'      => __( "Search $plural", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'all_items'         => __( "All $plural", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'parent_item'       => __( "Parent $single", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'parent_item_colon' => __( "Parent $single:", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'edit_item'         => __( "Edit $single", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'update_item'       => __( "Update $single", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'add_new_item'      => __( "Add New $single", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'new_item_name'     => __( "New $single Name", ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-			'menu_name'         => __( $single, ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
-		);
-
-		$args = array(
-			'hierarchical'      => false,
-			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_in_rest'      => true,
-			'show_admin_column' => true,
-			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'banner_zones' ),
-		);
-
-		register_taxonomy( 'banner_zones', array( 'advertiser','banner' ), $args );
+        $this->registerTaxes(array(
+                $this->taxes['banner_zones']=> array(
+                        'single' =>'Banner Zone',
+                        'plural' =>'Banner Zones',
+                        'hierarchical'      => false,
+                        'supports' => array( $this->cpts['advertiser'],$this->cpts['banner'] )
+                )
+        ));
 	}
 
 	public function addMetaBox(){
 		add_meta_box(
 			'banners_options',
-			'Banner Fields',
+			 __('Banner Fields',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
 			array( $this, 'renderBannerFields' ),
-			'banner',
+			$this->cpts['banner'],
 			'normal',
 			'default'
 		);
@@ -104,17 +89,17 @@ class BannerController {
 		$banner_link =  isset($data['link'])?$data['link']:"";
 		?>
 		<div class="options-box">
-                <label for="banners_options_link">לינק אליו מוביל הבאנר</label>
+                <label for="banners_options_link"><? echo __('Link to follow when banner is clicked',ADVERTISERS_INDEX_PLUGIN_DOMAIN); ?></label>
                 <input type="url" id="banners_options_link" placeholder="url" name="banners_options_link" value="<?php echo esc_url($banner_link); ?>">
 			<div>
 				<input class=" image-upload" id="banners_options_banner_desktop" name="banners_options_banner_desktop" type="hidden" value="<?php echo esc_url($banner_desktop); ?>">
-				//options for banners? banner sizes. 160 x 380
+				<? echo __('banner sizes',ADVERTISERS_INDEX_PLUGIN_DOMAIN); ?>. 160 x 380
 				<div class="display_images">
 					<?php
 					echo '<div class="gallery-image" style="background-image: url('.esc_url($banner_desktop).');" ></div>';
 					?>
 				</div>
-				<button type="button" class="button button-primary js-image-upload">Select Banner for desktop</button>
+				<button type="button" class="button button-primary js-image-upload"><? echo __('Select Banner for desktop',ADVERTISERS_INDEX_PLUGIN_DOMAIN); ?></button>
 			</div>
 			<div>
 				<input class=" image-upload" id="banners_options_banner_mobile" name="banners_options_banner_mobile" type="hidden" value="<?php echo esc_url($banner_mobile); ?>">
@@ -123,7 +108,7 @@ class BannerController {
 					echo '<div class="gallery-image" style="background-image: url('.esc_url($banner_mobile).');" ></div>';
 					?>
 				</div>
-				<button type="button" class="button button-primary js-image-upload">Select Banner for mobile</button>
+				<button type="button" class="button button-primary js-image-upload"><? echo __('Select Banner for mobile',ADVERTISERS_INDEX_PLUGIN_DOMAIN); ?></button>
 			</div>
 		</div>
 		<?php
@@ -161,31 +146,30 @@ class BannerController {
 	public function displayBanners($attributes){
 
 	    global $post;
-	    $zones = get_the_terms($post->ID,'banner_zones');
+	    $zones = get_the_terms($post->ID,$this->taxes['banner_zones']);
 	    $numberosts = isset($attributes['numAds'])?intval($attributes['numAds']):2;
 	    if($zones) {
 		    $terms = array_map( function ( $tax ) {
 			    return $tax->term_id;
 		    }, $zones );
             $banners = get_posts(array(
-                    'post_type'=>'banner',
+                    'post_type'=>$this->cpts['banner'],
                     'numberposts' => $numberosts,
                     'tax_query' => array(
                         array(
-                            'taxonomy' => 'banner_zones',
+                            'taxonomy' => $this->taxes['banner_zones'],
                             'field' => 'term_id',
-                            'terms' => $terms, /// Where term_id of Term 1 is "1".
+                            'terms' => $terms,
                         )
                     )
 
             ));
 	    }else{
 	        $banners = get_posts(array(
-	                'post_type' => 'banner',
+	                'post_type' => $this->cpts['banner'],
                     'numberposts' => $numberosts
             ));
 	    }
-	    // get banners of first zone up to the amount specified in numAds;
 
 //        echo var_dump($terms);
         foreach ($banners as $banner){

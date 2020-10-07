@@ -4,6 +4,7 @@
  */
 
 namespace Inc\Api;
+
 class SettingsApi {
 	public $admin_pages = array();
 	public $admin_subpages = array();

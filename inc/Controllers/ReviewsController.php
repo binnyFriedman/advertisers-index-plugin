@@ -21,9 +21,9 @@ class ReviewsController extends BaseController {
 	public function addCpt(){
 
 		$labels = array(
-			'name'=> __('Review',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
-			'singular_name'=>_('Review',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
-			"menu_name" => _('Reviews',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
+			'name'=> _x('Review','Name of post type used for reviews',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
+			'singular_name'=>_x('Review','Name of post type used for reviews',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
+			"menu_name" => _x('Reviews','Plural Name of post type used for reviews',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
 
 		);
 		$args = array(
@@ -35,15 +35,15 @@ class ReviewsController extends BaseController {
 			'supports' => array('title','editor'),
 
 		);
-		register_post_type( 'review',$args);
+		register_post_type( $this->cpts['review'],$args);
 	}
 
 	public function addMetaBox(){
 		add_meta_box(
 			'review_details',
-			'Review details',
+			__('Review details',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
 			array( $this, 'renderReviewDetails' ),
-			'review',
+			$this->cpts['review'],
 			'side',
 			'default'
 		);
@@ -51,7 +51,6 @@ class ReviewsController extends BaseController {
 
 	public function renderReviewDetails($post){
 
-		// fields: name:string,rating:Number header==title, email:string, approved:boolean, featured:boolean
 		wp_nonce_field('advertisers_reviews','advertisers_reviews_nonce');
 		$data = get_post_meta( $post->ID,'_advertisers_reviews_key',true);
 		$name = isset($data['name'])?$data['name']:'';
@@ -75,7 +74,7 @@ class ReviewsController extends BaseController {
                 'id' => "advertisers_reviews_advertiser_id",
                 'label' => __('Review Advertiser relation',ADVERTISERS_INDEX_PLUGIN_DOMAIN),
                 'value' => $advertiser_id,
-                'post_type' => 'advertiser',
+                'post_type' => $this->cpts['advertiser'],
         ));
         $this->rating_field(array(
 	        'name' => "advertisers_reviews_rating",
@@ -194,7 +193,7 @@ class ReviewsController extends BaseController {
 			'approved' => isset($_POST['advertisers_reviews_approved'])?1:0,
 			'featured' => isset($_POST['advertisers_reviews_featured'])?1:0
 		);
-		update_post_meta($post_id,'_advertisers_reviews_key',$data);
+		 update_post_meta($post_id,'_advertisers_reviews_key',$data);
 
 	}
 

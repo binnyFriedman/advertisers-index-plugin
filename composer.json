@@ -11,7 +11,6 @@
   ],
 
   "require": {
-    "facebook/graph-sdk": "5.*"
   },
   "autoload": {
     "psr-4": {"Inc\\": "./inc"}

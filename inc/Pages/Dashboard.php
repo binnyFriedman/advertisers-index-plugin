@@ -65,6 +65,16 @@ class Dashboard extends BaseController {
 			'option_name'  => 'advertisers_facebook_settings',
 			'callback'     => array( $this->callbacks_mngr, 'facebookSettingsFieldsSanitize' )
 			),
+			array(
+			'option_group' => 'advertisers_contact_form_options',
+			'option_name'  => 'advertisers_contact_form_options',
+			'callback'     => array( $this->callbacks_mngr, 'facebookSettingsFieldsSanitize' )
+			),
+			array(
+			'option_group' => 'advertisers_template_options',
+			'option_name'  => 'advertisers_template_options',
+			'callback'     => array( $this->callbacks_mngr, 'template_options_sanitize' )
+			),
 		);
 
 		$this->settings->setSettings( $args );
@@ -95,6 +105,16 @@ class Dashboard extends BaseController {
 				'title'    => __( 'Facebook app settings', ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
 				'callback' => array( $this->callbacks_mngr, 'facebookAppSettings' ),
 				'page'     => 'advertisers_plugin'
+			),
+			array(
+				'id'       => 'advertisers_contact_form_options',
+				'title'    => __( 'Advertisers contact form options', ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
+				'page'     => 'advertisers_plugin'
+			),
+			array(
+				'id'       => 'advertisers_template_options',
+				'title'    => __( 'Advertisers default template options', ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
+				'page'     => 'advertisers_plugin'
 			)
 		);
 		$this->settings->setSections( $args );
@@ -105,7 +125,7 @@ class Dashboard extends BaseController {
 		// add fields to set cpt name sing and plural, and hieratical
 		$fields = array(
 			'cpt_singular_name' => array(
-				'title'=>'Cpt singular name.',
+				'title'=> 'Cpt singular name.' ,
 				'input_type'=>'text',
 				'description'=>'Name of the index item in singular form e.g Advertiser',
 				'section'=> 'advertisers_admin_cpt',
@@ -113,7 +133,7 @@ class Dashboard extends BaseController {
 
 			),
 			'cpt_plural_name' => array(
-				'title'=>'Cpt plural name',
+				'title'=> 'Cpt plural name',
 				'input_type'=>'text',
 				'description'=>'Name of the index item in plural form e.g Advertisers',
 				'section'=> 'advertisers_admin_cpt',
@@ -122,7 +142,7 @@ class Dashboard extends BaseController {
 
 			),
 			'cpt_is_hierarchical' => array(
-				'title'=>'Hierarchical?',
+				'title'=> 'Hierarchical?',
 				'input_type'=>'checkbox',
 				'section'=> 'advertisers_admin_cpt',
 				'description'=>'',
@@ -130,7 +150,7 @@ class Dashboard extends BaseController {
 
 			),
 			'taxonomy_singular_name' => array(
-				'title'=>'Taxonomy singular name.',
+				'title'=> 'Taxonomy singular name.',
 				'input_type'=>'text',
 				'description'=>'Name of the taxonomy in singular form e.g Expertise',
 				'section'=> 'advertisers_admin_taxonomy',
@@ -138,7 +158,7 @@ class Dashboard extends BaseController {
 
 			),
 			'taxonomy_plural_name' => array(
-				'title'=>'Taxonomy plural name',
+				'title'=> 'Taxonomy plural name',
 				'input_type'=>'text',
 				'description'=>'Name of the taxonomy in plural form e.g Expertises',
 				'section'=> 'advertisers_admin_taxonomy',
@@ -146,7 +166,7 @@ class Dashboard extends BaseController {
 
 
 			),'app_id' => array(
-				'title'=>'Facebook app id',
+				'title'=> 'Facebook app id',
 				'input_type'=>'text',
 				'description'=>'The app id given by facebook',
 				'section'=> 'advertisers_facebook_settings',
@@ -154,30 +174,114 @@ class Dashboard extends BaseController {
 				'option_name' => 'advertisers_facebook_settings',
 
 			),'app_secret' => array(
-				'title'=>'Facebook app secret',
+				'title'=> 'Facebook app secret',
 				'input_type'=>'text',
 				'description'=>'The app secret given by facebook',
 				'section'=> 'advertisers_facebook_settings',
 				'place_holder'=>'app-secret',
 				'option_name' => 'advertisers_facebook_settings',
 			),
+		   'email_subject' => array(
+				'title'=> 'Emails subject',
+				'input_type'=>'text',
+				'description'=>'',
+				'section'=> 'advertisers_contact_form_options',
+				'place_holder'=>'New lead from our advertiser index',
+				'option_name' => 'advertisers_contact_form_options',
+				'class' => 'widefat'
+			),
+			'email_to' => array(
+				'title'=> 'Emails to',
+				'input_type'=>'text',
+				'description'=>'',
+				'section'=> 'advertisers_contact_form_options',
+				'place_holder'=>'List of emails divided by , ',
+				'option_name' => 'advertisers_contact_form_options',
+				'class' => 'widefat'
+			),
+			'email_body' => array(
+				'title'=> 'Email body',
+				'input_type'=>'editor',
+				'description'=>'full email body send as html; available shortcodes are [name] [phone] [email] [advertisers_name] ',
+				'section'=> 'advertisers_contact_form_options',
+				'place_holder'=>'',
+				'option_name' => 'advertisers_contact_form_options',
+			),
+			'email_webhook' => array(
+				'title'=> 'Webhook to send data',
+				'input_type'=>'url',
+				'description'=>'webhook to send data to like zapier or integromat',
+				'section'=> 'advertisers_contact_form_options',
+				'place_holder'=>'',
+				'option_name' => 'advertisers_contact_form_options',
+				'class' => 'widefat'
+			),
+			'template_primary_color' => array(
+				'title'=> 'Template primary color',
+				'input_type'=>'text',
+				'description'=>'Used in breadcrums  background color',
+				'section'=> 'advertisers_template_options',
+				'place_holder'=>'',
+				'option_name' => 'advertisers_template_options',
+				'class' => 'field-color-picker',
+				'callback' => array($this->callbacks_mngr,'color_picker')
+			),
+			'template_secondary_color' => array(
+				'title'=> 'Template secondary color',
+				'input_type'=>'text',
+				'description'=>'Used in headings and as buttons background color',
+				'section'=> 'advertisers_template_options',
+				'place_holder'=>'',
+				'option_name' => 'advertisers_template_options',
+				'class' => 'field-color-picker',
+				'callback' => array($this->callbacks_mngr,'color_picker')
+			),
+			'template_text_color' => array(
+				'title'=> 'Template text color',
+				'input_type'=>'text',
+				'description'=>'',
+				'section'=> 'advertisers_template_options',
+				'place_holder'=>'',
+				'option_name' => 'advertisers_template_options',
+				'class' => 'field-color-picker',
+				'callback' => array($this->callbacks_mngr,'color_picker')
+			),
+			'template_expertise_header' => array(
+				'title'=> 'Template expertise\'s header',
+				'input_type'=>'text',
+				'description'=>'',
+				'section'=> 'advertisers_template_options',
+				'place_holder'=>'The text above the expertise list',
+				'option_name' => 'advertisers_template_options',
+				'class' => 'widefat',
+			),
+			'template_contact_form_header' => array(
+				'title'=> 'Template Contact form header',
+				'input_type'=>'text',
+				'description'=>'',
+				'section'=> 'advertisers_template_options',
+				'place_holder'=>'The text above the contact form',
+				'option_name' => 'advertisers_template_options',
+				'class' => 'widefat',
+			),
 		);
+
 		foreach ($fields as $key=>$value){
 			$callback = isset($value['callback'])?$value['callback']:array( $this->callbacks_mngr, 'checkboxField' );
 			$option_name = isset($value['option_name'])?$value['option_name']:'advertisers_plugin';
 			$args[] = array(
 				'id'       => $key,
-				'title'    => __( $value['title'], ADVERTISERS_INDEX_PLUGIN_DOMAIN ),
+				'title'    => __($value['title'],ADVERTISERS_INDEX_PLUGIN_DOMAIN),
 				'callback' => $callback,
 				'page'     => 'advertisers_plugin',
 				'section'  => $value['section'],
 				'args'     => array(
 					'option_name' => $option_name,
 					'label_for' => $key,
-					'class'     => 'ui_toggle',
+					'class'     => isset($value['class'])?$value['class']:'ui_toggle',
 					'input_type'=> $value['input_type'],
-					'description'=>$value['description'],
-					'place_holder' => $value['place_holder']
+					'description'=>__($value['description'],ADVERTISERS_INDEX_PLUGIN_DOMAIN),
+					'place_holder' => __($value['place_holder'],ADVERTISERS_INDEX_PLUGIN_DOMAIN)
 				)
 			);
 		}
@@ -191,7 +295,6 @@ class Dashboard extends BaseController {
 			'args' => array()
 
 		);
-
 
 
 

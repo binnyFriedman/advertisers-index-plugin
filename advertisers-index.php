@@ -3,12 +3,13 @@
  * @package AdvertisersIndex
  */
 /*
-Plugin Name:  Advertisers Index
+Plugin Name: Advertisers Index
 Version: 1.0.0
 Author: Nekuda
 Author URI: https://nekuda.co.il
 License: GPLv2 or later
-Text Domain:advertisers-index
+Text Domain: advertisers-index
+Domain Path: /languages/
 */
 
 defined( 'ABSPATH' ) or die( 'Hey, what are you doing here? You silly human!' );
@@ -35,6 +36,7 @@ function deactivate_advertisersIndex_plugin(){
 
 register_activation_hook(__FILE__, "activate_advertisers_plugin" );
 register_deactivation_hook(__FILE__,"deactivate_advertisersIndex_plugin");
+
 
 if ( class_exists( 'Inc\\Init' ) ) {
 	Inc\Init::register_services();

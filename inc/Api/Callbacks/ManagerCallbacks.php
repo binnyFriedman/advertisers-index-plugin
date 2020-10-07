@@ -32,7 +32,31 @@ class ManagerCallbacks extends BaseController {
 	}
 
 
+	public function template_options_sanitize(array $input){
+	    return $input;
+	}
 
+
+	public function check_color( $value ) {
+
+		if ( preg_match( '/^#[a-f0-9]{6}$/i', $value ) ) { // if user insert a HEX color with #
+			return true;
+		}
+
+		return false;
+	}
+
+	public function color_picker(array $args){
+		$name        = $args['label_for'];
+		$classes     = $args['class'];
+		$option_name = $args['option_name'];
+		$description = $args['description'];
+		$option    = get_option( $option_name );
+		$value = 	isset($option[$name])?esc_attr__($option[$name]):"";
+
+		echo  '<div><p>'.$description .'</p>
+		<input type="hidden" name="' . $option_name . '[' . $name . ']' . '"  value="'.$value.'"  class="'.$classes.'" /></div>';
+	}
 
 
 	public function checkboxField( array $args ) {
@@ -42,18 +66,24 @@ class ManagerCallbacks extends BaseController {
 		$option_name = $args['option_name'];
 		$type =         $args['input_type'];
 		$placeHolder = isset($args['place_holder'])?$args['place_holder']:"";
-		$checkbox    = get_option( $option_name );
-		$value = 	isset($checkbox[$name])? $args['input_type']=="checkbox"?isset($checkbox[$name]):$checkbox[$name]:"";
+		$option    = get_option( $option_name );
+		$value = 	isset($option[$name])? $args['input_type']=="checkbox"?isset($option[$name]):$option[$name]:"";
 		$description = $args['description'];
+		$editor = ($args['input_type']=="editor");
 		echo '<div class="' . $classes . '">
 		<p>'.$description.'</p>
-		<input type="'.$type .'" id="' . $name . '" name="' . $option_name . '[' . $name . ']' . '" value="'.$value.'" class="" ' . ( $value ? "checked" : "" ) . '
-		 placeholder="'.$placeHolder.'" >
+		'.($editor?wp_editor($value,$name):'
+		<input type="'.$type .'" id="' . $name . '" name="' . $option_name . '[' . $name . ']' . '" value="'.$value.'" class="'.$classes.'" ' . ( $value ? "checked" : "" ) . '
+		 placeholder="'.$placeHolder.'" >').'
 		<label for="' . $name . '" />
 		<div>
 		</div>
 	</label>
 	</div>';
+	}
+
+	public function editorField( array  $args){
+
 	}
 
 	public function levelsField(array $args){

@@ -14,8 +14,9 @@ class Enqueue {
 	function enqueue() {
 		// enqueue all our scripts
 		wp_enqueue_script('media_upload');
+		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_media();
 		wp_enqueue_style( 'advertisersStyle', ADVERTISERS_INDEX_PLUGIN_URL . 'assets/style.css' );
-		wp_enqueue_script( 'advertisersBackendScript', ADVERTISERS_INDEX_PLUGIN_URL . 'assets/src/js/app.js' );
+		wp_enqueue_script( 'advertisersBackendScript', ADVERTISERS_INDEX_PLUGIN_URL . 'assets/app.js' ,array('wp-color-picker'),'',true);
 	}
 }
